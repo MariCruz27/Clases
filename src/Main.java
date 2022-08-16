@@ -6,7 +6,6 @@ public class Main {
         //Creación de tres cuentas
         ArrayList<CuentaBancaria> cuentas = new ArrayList<CuentaBancaria>();
         Funciones funcion = new Funciones();
-
         Scanner nums = new Scanner(System.in);
         Scanner texts = new Scanner(System.in);
 
@@ -14,7 +13,6 @@ public class Main {
 
         int option, process, processTwo;
         String cuentaTransfer; //Cuenta a transferir
-        int posiTransfer;
         do {
             funcion.MenuPrincipal();//Register or login
             option = nums.nextInt();
@@ -22,6 +20,7 @@ public class Main {
             //Variables para verificación
             String numCuenta;
             int posi = 0;
+            int posiTransfer = 0;
 
             if (option==1){
                 indicesCuentas++;
@@ -52,6 +51,7 @@ public class Main {
                 System.out.println("Ingresa el número de tu cuenta");
                 numCuenta = texts.next();
                 for (int i = 0; i<cuentas.size();i++){
+                    System.out.println(cuentas.get(i).getMostrarNumCuenta());
                     if (cuentas.get(i).getMostrarNumCuenta().equals(numCuenta)){
                         posi = i;
                         break;
@@ -93,10 +93,14 @@ public class Main {
                                 } else if (process==2) {
                                     switch (processTwo) {
                                         case 1:
-                                            cuentas.get(posi).retirarDinero();
+                                            System.out.println("Digite una cantidad a retirar");
+                                            double retiro = nums.nextDouble();
+                                            cuentas.get(posi).retirarDinero(retiro);
                                             break;
                                         case 2:
-                                            cuentas.get(posi).depositarDinero();
+                                            System.out.println("Digite una cantidad a depositar");
+                                            double deposito = nums.nextDouble();
+                                            cuentas.get(posi).depositarDinero(deposito);
                                             break;
                                         case 3:
                                             //Pedir otra cuenta
@@ -106,11 +110,15 @@ public class Main {
                                             for (int i = 0; i<cuentas.size();i++) {
                                                 if (cuentas.get(i).getMostrarNumCuenta().equals(cuentaTransfer)) {
                                                     posiTransfer = i;
+                                                    break;
                                                 } else {
                                                     posiTransfer = -1;
                                                 }
                                             }
-                                            cuentas.get(posi).transferirDinero("123");
+                                            System.out.println("Digite el monto a transferir: ");
+                                            double transfer = nums.nextDouble();
+                                            cuentas.get(posi).retirarDinero(transfer);
+                                            cuentas.get(posiTransfer).depositarDinero(transfer);
                                             break;
                                         case 4:
                                             cuentas.get(posi).ultimosRetiros();

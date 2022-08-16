@@ -20,31 +20,7 @@ public class CuentaBancaria {
         this.montoMax = max;
     }
 
-    //Crear Cuenta
-    public void crearPerfil() {
-        System.out.println("Digite el nombre: ");
-        String nom = scan.nextLine();
-        System.out.println("Que tipo de cuenta desea abrir (Credito o Debito) ");
-        String tipo = scan.nextLine();
-        System.out.println("Digite su numero de cédula: ");
-        String id = scan.nextLine();
-        System.out.println("Digite su numero de cuenta: ");
-        String nCuenta = scan.nextLine();
-        System.out.println("Digite su saldo actual: ");
-        double saldo = scan.nextDouble();
-        double mmax;
 
-        tipo = tipo.toLowerCase();
-
-        if (tipo.equals("credito")) {
-            System.out.println("Cual es su monto máximo vigente?: ");
-            mmax = scan.nextDouble();
-        }
-        else {
-            mmax = saldo;
-        }
-        CuentaBancaria(nCuenta,tipo,saldo,nom,id,mmax);
-    }
 
     //Accesores
     public String getMostrarCedula() {
@@ -85,10 +61,7 @@ public class CuentaBancaria {
     }
 
     //Retirar dinero
-    public void retirarDinero() {
-        System.out.println("Digite la cantidad a retirar: ");
-        double retiro = scan.nextDouble();
-
+    public void retirarDinero(double retiro) {
         if (retiro > this.saldo || retiro <= 0) {
             System.out.println("Cantidad de dinero a retirar erronea o no disponible");
         }else {
@@ -98,9 +71,7 @@ public class CuentaBancaria {
     }
 
     //Depositar
-    public void depositarDinero() {
-        System.out.println("Digite la cantidad a depositar: ");
-        double deposito = scan.nextDouble();
+    public void depositarDinero(double deposito) {
         this.saldo = this.saldo+deposito;
         System.out.println("Su nuevo saldo es: " + this.saldo);
     }
