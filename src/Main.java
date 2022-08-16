@@ -5,12 +5,12 @@ public class Main {
     public static void main(String[] args) {
         //Creación de tres cuentas
         ArrayList<CuentaBancaria> cuentas = new ArrayList<CuentaBancaria>();
-        //Prototipo
-        CuentaBancaria cuenta = new CuentaBancaria();
         Funciones funcion = new Funciones();
 
         Scanner nums = new Scanner(System.in);
         Scanner texts = new Scanner(System.in);
+
+        int indicesCuentas = -1;
 
         int option, process, processTwo;
         String cuentaTransfer; //Cuenta a transferir
@@ -24,8 +24,29 @@ public class Main {
             int posi = 0;
 
             if (option==1){
-                cuenta.crearPerfil();
-                cuentas.add(cuenta);
+                indicesCuentas++;
+                System.out.println("Digite el nombre: ");
+                String nom = texts.nextLine();
+                System.out.println("Que tipo de cuenta desea abrir (Credito o Debito) ");
+                String tipo = texts.nextLine();
+                System.out.println("Digite su numero de cédula: ");
+                String id = texts.nextLine();
+                System.out.println("Digite su numero de cuenta: ");
+                String nCuenta = texts.nextLine();
+                System.out.println("Digite su saldo actual: ");
+                double saldo = nums.nextDouble();
+                double mmax;
+
+                tipo = tipo.toLowerCase();
+
+                if (tipo.equals("credito")) {
+                    System.out.println("Cual es su monto máximo vigente?: ");
+                    mmax = nums.nextDouble();
+                }
+                else {
+                    mmax = saldo;
+                }
+                cuentas.add(indicesCuentas, new CuentaBancaria(nCuenta,tipo,saldo,nom,id,mmax));
             }if(option==2){
                 //Hallar cuenta
                 System.out.println("Ingresa el número de tu cuenta");
@@ -33,11 +54,13 @@ public class Main {
                 for (int i = 0; i<cuentas.size();i++){
                     if (cuentas.get(i).getMostrarNumCuenta().equals(numCuenta)){
                         posi = i;
+                        break;
                     }else{
                         posi=-1;
                     }
                 }
                 if (posi>=0){
+                    System.out.println("Bienvenido/a");
                     do{
                         //Menú de funciones
                         funcion.MenuFunciones();
@@ -121,6 +144,8 @@ public class Main {
                         }
 
                     }while(process!=0);
+                }else{
+                    System.out.println("El número de cuenta digitado no existe");
                 }
 
             }else if(option<0 || option>2){

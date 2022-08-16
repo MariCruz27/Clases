@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Funciones {
 
-    Scanner lectu = new Scanner(System.in);
     public void MenuPrincipal(){
         System.out.println("\nEscoge una opción");
         System.out.println("1. Crear Cuenta");
@@ -24,7 +22,7 @@ public class Funciones {
     public void SubMenu(int option){
         switch (option){
             case 1:
-                System.out.println("Mostrar: ");
+                System.out.println("\nMostrar: ");
                 System.out.println("1. Datos");
                 System.out.println("2. Cedula");
                 System.out.println("3. Nombre");
@@ -51,5 +49,7 @@ public class Funciones {
                 break;
         }
     }
+
+
 
 }
