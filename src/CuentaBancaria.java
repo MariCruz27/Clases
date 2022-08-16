@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class CuentaBancaria {
-    Scanner scan = new Scanner(System.in);
 
     //Atributos
     private String noCuenta;
@@ -13,7 +11,7 @@ public class CuentaBancaria {
     private double montoMax;
 
     //Constructor
-    public void CuentaBancaria(String num, String tipo, double saldo, String nom, String cedula, double max) {
+    public CuentaBancaria(String num, String tipo, double saldo, String nom, String cedula, double max) {
         this.noCuenta = num;
         this.tipo = tipo;
         this.saldo = saldo;
@@ -108,16 +106,6 @@ public class CuentaBancaria {
     }
 
     //Transferir
-    public void transferirDinero(String cuentaT) {
-        System.out.println("Digite el monto a transferir: ");
-        double transfer = scan.nextDouble();
-        if (transfer > this.saldo || transfer <= 0) {
-            System.out.println("Cantidad de dinero a transferir erronea o no disponible");
-        }else {
-            this.saldo = this.saldo-transfer;
-            System.out.println("Su nuevo saldo es: " + this.saldo);
-        }
-    }
 
     //Ultimos Retiros
     public void ultimosRetiros() {
